@@ -34,3 +34,55 @@ collections:
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
       - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Draft", name: "draft", widget: "boolean", default: true}
+      - label: 'Code'
+        name: 'code'
+        widget: 'code'
+      - { label: 'Color', name: 'color', widget: 'color' }
+      - { label: 'Color', name: 'color', widget: 'color', enableAlpha: true, allowInput: true }
+      - label: 'Birthdate'
+        name: 'birthdate'
+        widget: 'date'
+        default: ''
+        format: 'MMM Do YY'
+      - label: 'Birthdate'
+        name: 'birthdate'
+        widget: 'date'
+        default: ''
+        format: 'MMM Do YY'
+      - {label: "Manual PDF", name: "manual_pdf", widget: "file", default: "/uploads/general-manual.pdf", media_library:, config:, multiple: true}
+      - label: "Profile"
+        name: "profile"
+        widget: "object"
+        summary: '{{fields.name}}: {{fields.birthdate}}'
+        fields:
+          - {label: "Public", name: "public", widget: "boolean", default: true}
+          - {label: "Name", name: "name", widget: "string"}
+          - label: "Birthdate"
+            name: "birthdate"
+            widget: "date"
+            default: ""
+            format: "MM/DD/YYYY"
+          - label: "Address"
+            name: "address"
+            widget: "object"
+            collapsed: true
+            fields: 
+              - {label: "Street Address", name: "street", widget: "string"}
+              - {label: "City", name: "city", widget: "string"}
+              - {label: "Postal Code", name: "post-code", widget: "string"}
+        - label: "Post Author"
+          name: "author"
+          widget: "relation"
+          collection: "authors"
+          search_fields: ["name.first", "twitterHandle"]
+          value_field: "name.first"
+          display_fields: ["twitterHandle", "followerCount"]
+        - label: "City"
+          name: "airport-code"
+          widget: "select"
+          options:
+            - { label: "Chicago", value: "ORD" }
+            - { label: "Paris", value: "CDG" }
+            - { label: "Tokyo", value: "HND" }
+      - {label: "Location", name: "location", widget: "map" }
